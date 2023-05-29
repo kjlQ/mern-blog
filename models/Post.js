@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema(
     text: {
       type: String,
       required: true,
-      unique: true,
+      unique: false,
     },
     tags: {
       type: Array,
@@ -21,7 +21,7 @@ const PostSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "users",
       required: true,
     },
     imageUrl: String,
