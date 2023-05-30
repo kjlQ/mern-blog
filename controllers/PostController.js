@@ -36,8 +36,8 @@ export const getAll = async (req, res) => {
 export const getOne = async (req, res) => {
   try {
     const postId = req.params.id;
-    console.log(postId);
-    const { error, doc } = await PostSchema.findOneAndUpdate(
+
+    PostSchema.findOneAndUpdate(
       {
         _id: postId,
       },
@@ -47,16 +47,8 @@ export const getOne = async (req, res) => {
       {
         returnDocument: "after",
       }
-    ).then((error, doc) => {
-      console.log(doc);
-      if (error) {
-        return res.status(500).json({
-          message: error,
-        });
-      }
+    ).then((doc) => {
       if (!doc) {
-        console.log("123");
-
         return res.status(404).json({
           message: "Can't find",
         });
